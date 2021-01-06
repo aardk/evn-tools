@@ -4,6 +4,9 @@ from matplotlib import pylab as pl
 from matplotlib import dates
 from datetime import datetime, timedelta
 
+from casatools import table as tbtool
+tb = tbtool()
+    
 pl.rcParams['figure.dpi'] = 160
 def __casa2datetime(t):
     days = int(t // 86400)
