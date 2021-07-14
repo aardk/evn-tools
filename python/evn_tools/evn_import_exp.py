@@ -1,6 +1,7 @@
 import re
 import pathlib
 import pyvo
+import gzip
 from urllib.request import urlopen, urlretrieve
 from urllib.parse import urlparse
 
@@ -43,3 +44,10 @@ def evn_import_exp(expname):
             lowername = result[0].lower()
             if lowername.endswith('.antab.gz') or lowername.endswith('.uvflg'):
                 urlretrieve(url + '/' + result[0], result[0])
+                # decompress antab
+                if result[0].endswith('.gz'):
+                    with gzip.open(result[0], 'rb') as f:
+                        antab = f.read()
+                    antabname = result[0][:-3]
+                    with open(antabname, 'wb') as f:
+                        f.write(antab)
