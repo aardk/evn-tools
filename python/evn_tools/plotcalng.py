@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from casatools import table as tbtool
 tb = tbtool()
     
-params = {'legend.fontsize': 'small',
+params = {'legend.fontsize': 'x-small',
           'axes.labelsize': 'small',
           'axes.titlesize': 'small',
           'xtick.labelsize': 'x-small',
@@ -405,7 +405,7 @@ def __parse_input(caltable, xaxis, yaxis, field, spw, antenna, poln, timerange):
 def plotcalng(caltable='', xaxis='', yaxis='', poln='', field='', antenna='', spw='', 
               timerange='', plotncolumns=2, subplot='', overwrite=False, clearpanel='Auto', iteration='', 
               plotrange=[], showflags=False, plotsymbol='.', plotcolor='blue', markersize=5.0, 
-              fontsize=10.0, showgui=False, figfile=''):
+              fontsize=10.0, showgui=False, figfile='', showlegend=True):
     if subplot != "":
         print("Warning, the subplot parameter is ignored")
     
@@ -501,6 +501,8 @@ def plotcalng(caltable='', xaxis='', yaxis='', poln='', field='', antenna='', sp
             ax.plot(xy[0], xy[1], plotsymbol, label=xy[2])
             ax.set_xlabel(axislabels[0])
             ax.set_ylabel(axislabels[1])
+            if showlegend:
+                ax.legend()
 
             if plotrange != []:
                 # CASA convention: if min==max in plotrange for axis then autoscale that axis
