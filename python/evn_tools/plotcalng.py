@@ -7,7 +7,14 @@ from datetime import datetime, timedelta
 from casatools import table as tbtool
 tb = tbtool()
     
-pl.rcParams['figure.dpi'] = 160
+params = {'legend.fontsize': 'small',
+          'axes.labelsize': 'small',
+          'axes.titlesize': 'small',
+          'xtick.labelsize': 'x-small',
+          'ytick.labelsize': 'x-small',
+          'figure.dpi': 160}
+pl.rcParams.update(params)
+
 def __casa2datetime(t):
     days = int(t // 86400)
     temp = int(round((t - days * 86400) * 1000))
