@@ -9,8 +9,8 @@ service = pyvo.dal.TAPService('http://evn-vo.jive.eu/tap')
 
 def evn_import_exp(expname):
     query = service.search(f"SELECT * FROM ivoa.obscore WHERE obs_id = '{expname}'")
-    dataobj = query[0].getdataobj()
-    urls = [f for f in dataobj.getcolumn('access_url').data]
+    datalink = query[0].getdatalink()
+    urls = [f.access_url for f in datalink]
     if type(urls[0]) == bytes:
         urls = [x.decode() for x in urls]
 
